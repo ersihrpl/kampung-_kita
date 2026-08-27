@@ -1,37 +1,563 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Kampung Kita</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dusun Permai - Sungai Palai</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5faf6;
+            color: #333;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: white;
+            padding: 17px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+            color: #176b3a;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 22px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #176b3a;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 88vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(23,107,58,0.68),
+                    rgba(23,107,58,0.68)
+                ),
+                url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=80");
+
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 12px;
+        }
+
+        .hero h2 {
+            font-size: 25px;
+            margin-bottom: 18px;
+            font-weight: normal;
+        }
+
+        .hero p {
+            max-width: 650px;
+            line-height: 1.7;
+            margin: auto;
+            font-size: 17px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 13px 25px;
+            background: white;
+            color: #176b3a;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* SECTION */
+        section {
+            padding: 70px 7%;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title h2 {
+            color: #176b3a;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            color: #777;
+        }
+
+        /* PROFIL */
+        .profile {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* DATA */
+        .data {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .data-box {
+            background: #e7f5eb;
+            padding: 25px;
+            text-align: center;
+            border-radius: 18px;
+        }
+
+        .data-box .number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #176b3a;
+        }
+
+        /* POTENSI */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+        }
+
+        .icon {
+            font-size: 43px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #176b3a;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* GALERI */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        /* LOKASI */
+        .location {
+            text-align: center;
+            background: #e7f5eb;
+        }
+
+        .location-box {
+            background: white;
+            max-width: 700px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 20px;
+            line-height: 1.8;
+        }
+
+        /* KONTAK */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            margin: 12px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #14532d;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* TAMPILAN HP */
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                font-size: 14px;
+            }
+
+            .hero {
+                min-height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero h2 {
+                font-size: 20px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .data {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>🏡 Selamat Datang di Kampung Kita</h1>
+    <!-- NAVBAR -->
+    <nav>
 
-    <p>
-        Website ini dibuat untuk memperkenalkan
-        kampung kita kepada masyarakat.
-    </p>
+        <div class="logo">
+            🏡 Dusun Permai
+        </div>
 
-    <h2>📖 Tentang Kampung</h2>
+        <ul>
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#profil">Profil</a></li>
+            <li><a href="#potensi">Potensi</a></li>
+            <li><a href="#galeri">Galeri</a></li>
+            <li><a href="#lokasi">Lokasi</a></li>
+        </ul>
 
-    <p>
-        Kampung kita memiliki sejarah, budaya,
-        dan berbagai potensi yang menarik.
-    </p>
+    </nav>
 
-    <h2>🌿 Potensi Kampung</h2>
 
-    <p>
-        Pertanian, UMKM, kuliner, dan budaya lokal.
-    </p>
+    <!-- BERANDA -->
+    <section class="hero" id="beranda">
 
-    <h2>📸 Galeri</h2>
+        <div>
 
-    <p>
-        Foto-foto kegiatan dan keindahan kampung
-        akan ditampilkan di sini.
-    </p>
+            <h1>DUSUN PERMAI</h1>
+
+            <h2>Kampung Sungai Palai · Desa Sepadu</h2>
+
+            <p>
+                Selamat datang di website Dusun Permai.
+                Mari mengenal lebih dekat kehidupan masyarakat,
+                budaya, potensi, dan keindahan kampung kami.
+            </p>
+
+            <a href="#profil" class="button">
+                Jelajahi Dusun
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROFIL -->
+    <section id="profil">
+
+        <div class="title">
+
+            <h2>📖 Profil Dusun</h2>
+
+            <p>Mengenal lebih dekat Dusun Permai</p>
+
+        </div>
+
+        <div class="profile">
+
+            <p>
+                <b>Dusun Permai</b> merupakan salah satu dusun
+                yang berada di Kampung Sungai Palai,
+                Desa Sepadu.
+            </p>
+
+            <br>
+
+            <p>
+                Dusun ini menjadi tempat tinggal masyarakat
+                dengan kehidupan, budaya, serta berbagai
+                potensi lokal yang menjadi bagian dari
+                identitas masyarakat.
+            </p>
+
+            <br>
+
+            <p>
+                <!-- GANTI TEKS INI DENGAN SEJARAH ASLI DUSUN -->
+                Sejarah dan cerita mengenai Dusun Permai
+                dapat ditambahkan di bagian ini.
+            </p>
+
+        </div>
+
+
+        <div class="data">
+
+            <div class="data-box">
+                <div class="number">01</div>
+                <p>Dusun</p>
+            </div>
+
+            <div class="data-box">
+                <div class="number">01</div>
+                <p>Kampung</p>
+            </div>
+
+            <div class="data-box">
+                <div class="number">01</div>
+                <p>Desa</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- POTENSI -->
+    <section id="potensi">
+
+        <div class="title">
+
+            <h2>🌿 Potensi Dusun</h2>
+
+            <p>
+                Potensi yang dapat dikembangkan
+                bersama masyarakat
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="icon">🌾</div>
+
+                <h3>Pertanian</h3>
+
+                <p>
+                    Potensi pertanian dan perkebunan
+                    masyarakat Dusun Permai.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🛍️</div>
+
+                <h3>UMKM</h3>
+
+                <p>
+                    Usaha dan produk lokal
+                    yang dikembangkan masyarakat.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🎭</div>
+
+                <h3>Budaya</h3>
+
+                <p>
+                    Tradisi dan budaya lokal
+                    yang terus dilestarikan.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">🌳</div>
+
+                <h3>Alam</h3>
+
+                <p>
+                    Keindahan alam dan lingkungan
+                    yang dimiliki dusun.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GALERI -->
+    <section id="galeri">
+
+        <div class="title">
+
+            <h2>📸 Galeri Dusun</h2>
+
+            <p>
+                Dokumentasi kegiatan dan suasana
+                Dusun Permai
+            </p>
+
+        </div>
+
+
+        <div class="gallery">
+
+            <!-- FOTO SEMENTARA -->
+            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80">
+
+            <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80">
+
+            <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=80">
+
+        </div>
+
+    </section>
+
+
+    <!-- LOKASI -->
+    <section class="location" id="lokasi">
+
+        <div class="title">
+
+            <h2>📍 Lokasi</h2>
+
+            <p>Temukan Dusun Permai</p>
+
+        </div>
+
+        <div class="location-box">
+
+            <p>
+                <b>Dusun Permai</b>
+            </p>
+
+            <p>
+                Kampung Sungai Palai,
+                Desa Sepadu
+            </p>
+
+            <br>
+
+            <p>
+                🗺️ Peta lokasi dapat ditambahkan
+                di bagian ini.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- KONTAK -->
+    <section class="contact">
+
+        <div class="title">
+
+            <h2>📞 Kontak</h2>
+
+            <p>Informasi dan komunikasi</p>
+
+        </div>
+
+        <p>📍 Dusun Permai, Kampung Sungai Palai, Desa Sepadu</p>
+
+        <p>📧 Email: kampung@example.com</p>
+
+        <p>📱 Instagram: @dusunpermai</p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 Dusun Permai
+        </p>
+
+        <p>
+            Kampung Sungai Palai · Desa Sepadu
+        </p>
+
+    </footer>
 
 </body>
 </html>
