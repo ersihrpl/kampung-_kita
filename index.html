@@ -1,630 +1,920 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Seburing Sungai Palai</title>  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f1f7f3;
-      color: #26352c;
-      line-height: 1.8;
-    }
-
-    /* HEADER */
-    header {
-      min-height: 90vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 30px 20px;
-      color: white;
-      background:
-        linear-gradient(rgba(13, 76, 48, 0.82), rgba(20, 105, 66, 0.82)),
-        url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=80");
-      background-size: cover;
-      background-position: center;
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      max-width: 700px;
-      margin: auto;
-      font-size: 18px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 28px;
-      padding: 13px 28px;
-      background: #dff4e5;
-      color: #12603d;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-    }
-
-    /* NAVIGASI */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      background: #0b4d31;
-      padding: 10px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 9px 14px;
-      border-radius: 7px;
-      font-size: 14px;
-    }
-
-    nav a:hover {
-      background: #287b52;
-    }
-
-    /* SECTION */
-    section {
-      max-width: 950px;
-      margin: 35px auto;
-      padding: 32px;
-      background: white;
-      border-radius: 18px;
-      box-shadow: 0 5px 20px rgba(20,80,50,0.08);
-    }
-
-    h2 {
-      text-align: center;
-      color: #11613d;
-      margin-bottom: 22px;
-      font-size: 29px;
-    }
-
-    h3 {
-      color: #19704a;
-      margin: 22px 0 8px;
-    }
-
-    .intro {
-      text-align: center;
-    }
-
-    /* KARTU */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 25px;
-    }
-
-    .card {
-      background: #edf8f0;
-      padding: 22px;
-      border-radius: 15px;
-      text-align: center;
-      border: 1px solid #d8eadf;
-    }
-
-    .card .icon {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .card h3 {
-      margin-top: 0;
-    }
-
-    /* SEJARAH */
-    .timeline {
-      border-left: 4px solid #29905c;
-      padding-left: 22px;
-    }
-
-    .timeline-item {
-      margin-bottom: 25px;
-    }
-
-    .year {
-      display: inline-block;
-      background: #147046;
-      color: white;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-weight: bold;
-      margin-bottom: 7px;
-    }
-
-    /* GALERI */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .gallery-box {
-      min-height: 170px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #d9eee0, #b8d9c3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #286044;
-      font-weight: bold;
-      padding: 15px;
-    }
-
-    /* MAP */
-    .map {
-      margin-top: 20px;
-      border-radius: 15px;
-      overflow: hidden;
-    }
-
-    .map iframe {
-      width: 100%;
-      height: 400px;
-      border: 0;
-    }
-
-    /* KONTAK */
-    .contact-list {
-      max-width: 550px;
-      margin: 25px auto 0;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .contact {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 15px 20px;
-      background: #edf8f0;
-      border: 1px solid #d6e9dc;
-      border-radius: 14px;
-      text-decoration: none;
-      color: #26352c;
-      transition: 0.3s;
-    }
-
-    .contact:hover {
-      transform: translateY(-3px);
-      background: #dff1e5;
-    }
-
-    .contact img {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-    }
-
-    .contact strong {
-      display: block;
-      color: #12603d;
-      font-size: 17px;
-    }
-
-    .contact span {
-      color: #66736a;
-      font-size: 14px;
-    }
-
-    /* FOOTER */
-    footer {
-      margin-top: 50px;
-      padding: 30px 20px;
-      text-align: center;
-      background: #083d27;
-      color: white;
-    }
-
-    /* HP */
-    @media (max-width: 700px) {
-      .hero h1 {
-        font-size: 33px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      section {
-        margin: 20px 12px;
-        padding: 22px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-box {
-        min-height: 140px;
-      }
-
-      .map iframe {
-        height: 300px;
-      }
-
-      nav a {
-        font-size: 12px;
-        padding: 8px;
-      }
-    }
-  </style></head><body>  <!-- ================= BERANDA ================= -->  <header id="beranda">
-    <div class="hero">  <h1>Seburing Sungai Palai</h1>
-
-  <p>
-    Mengenal sejarah, kehidupan masyarakat,
-    budaya, dan perkembangan Seburing Sungai Palai.
-  </p>
-
-  <a href="#sejarah" class="btn">
-    Jelajahi Sejarah
-  </a>
-
-</div>
-
-  </header>  <!-- ================= MENU ================= -->  <nav>
-    <a href="#beranda">Beranda</a>
-    <a href="#tentang">Tentang</a>
-    <a href="#sejarah">Sejarah</a>
-    <a href="#budaya">Budaya</a>
-    <a href="#galeri">Galeri</a>
-    <a href="#lokasi">Lokasi</a>
-    <a href="#kontak">Kontak</a>
-  </nav>  <!-- ================= TENTANG ================= -->  <section id="tentang"><h2>Tentang Seburing Sungai Palai</h2>
-
-<p class="intro">
-  Seburing merupakan desa yang berada di Kecamatan Semparuk,
-  Kabupaten Sambas, Kalimantan Barat. Website ini dibuat
-  sebagai media informasi untuk mengenalkan sejarah dan
-  kehidupan masyarakat Seburing Sungai Palai.
-</p>
-
-<div class="cards">
-
-  <div class="card">
-    <div class="icon">🌿</div>
-    <h3>Lingkungan</h3>
-    <p>
-      Mengenal lingkungan dan kehidupan wilayah
-      Seburing Sungai Palai.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="icon">🏘️</div>
-    <h3>Masyarakat</h3>
-    <p>
-      Kehidupan masyarakat menjadi bagian penting
-      dari perkembangan daerah.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="icon">📖</div>
-    <h3>Sejarah</h3>
-    <p>
-      Mengenalkan sejarah kepada generasi muda
-      agar tetap dikenal dan dihargai.
-    </p>
-  </div>
-
-</div>
-
-  </section>  <!-- ================= SEJARAH ================= -->  <section id="sejarah"><h2>Sejarah Desa Seburing</h2>
-
-<p>
-  Berdasarkan sejarah yang dipublikasikan oleh Pemerintah
-  Desa Seburing, secara historis Desa Seburing diperkirakan
-  berdiri dan diresmikan sekitar tahun 1900. Berdasarkan
-  keterangan masyarakat yang dicatat oleh pemerintah desa,
-  nama Seburing dikaitkan dengan seorang penduduk asli
-  bernama “Pak Buring” yang disebut sebagai perintis awal
-  desa.
-</p>
-
-<br>
-
-<p>
-  Sejak sekitar tahun 1900, pemerintahan Desa Seburing
-  disebut mulai berkembang. Pemimpin awal yang tercatat
-  adalah Abdul Gafar Bin Haji Umar yang pada masa itu
-  disebut sebagai Petinggi Kapung.
-</p>
-
-<div class="timeline">
-
-  <div class="timeline-item">
-
-    <span class="year">1900</span>
-
-    <p>
-      Desa Seburing diperkirakan berdiri dan diresmikan.
-      Nama Seburing menurut keterangan masyarakat
-      dikaitkan dengan Pak Buring sebagai perintis awal.
-    </p>
-
-  </div>
-
-
-  <div class="timeline-item">
-
-    <span class="year">1900–1943</span>
-
-    <p>
-      Abdul Gafar Bin Haji Umar tercatat sebagai
-      Petinggi Kapung yang memimpin pemerintahan
-      pada masa awal.
-    </p>
-
-  </div>
-
-
-  <div class="timeline-item">
-
-    <span class="year">1943–1965</span>
-
-    <p>
-      Pemerintahan selanjutnya diteruskan oleh
-      Machmud Nor, yang merupakan menantu Abdul
-      Gafar Bin Haji Umar.
-    </p>
-
-  </div>
-
-
-  <div class="timeline-item">
-
-    <span class="year">1965–1998</span>
-
-    <p>
-      Wadjidi melanjutkan pemerintahan dan pada masa
-      tersebut masih menggunakan sebutan Kepala Kampung.
-    </p>
-
-  </div>
-
-
-  <div class="timeline-item">
-
-    <span class="year">1998–2006</span>
-
-    <p>
-      Siswandi memimpin Desa Seburing sebagai Kepala Desa.
-    </p>
-
-  </div>
-
-
-  <div class="timeline-item">
-
-    <span class="year">2006–2018</span>
-
-    <p>
-      Pemerintahan Desa Seburing dilanjutkan oleh
-      Sarwo Edi hingga Juni 2018.
-    </p>
-
-  </div>
-
-
-  <div class="timeline-item">
-
-    <span class="year">2018–2020</span>
-
-    <p>
-      Setelah masa pemerintahan Sarwo Edi berakhir,
-      Aidi menjalankan tugas sebagai Pejabat Sementara
-      selama kurang lebih 18 bulan.
-    </p>
-
-  </div>
-
-
-  <div class="timeline-item">
-
-    <span class="year">2020–sekarang</span>
-
-    <p>
-      Sejak Januari 2020, pemerintahan Desa Seburing
-      dipimpin oleh H. Siswandi, S.IPem.
-    </p>
-
-  </div>
-
-</div>
-
-<br>
-
-<p>
-  Sejarah tersebut menunjukkan bahwa perjalanan Desa
-  Seburing tidak terlepas dari peran masyarakat dan para
-  pemimpin desa dari masa ke masa. Sejarah lokal penting
-  untuk dikenalkan kepada generasi muda agar identitas
-  dan cerita daerah tetap terjaga.
-</p>
-
-  </section>  <!-- ================= BUDAYA ================= -->  <section id="budaya"><h2>Budaya dan Kehidupan Masyarakat</h2>
-
-<h3>🤝 Gotong Royong</h3>
-
-<p>
-  Gotong royong merupakan salah satu bentuk kerja sama
-  masyarakat yang dapat memperkuat hubungan antarwarga.
-  Kegiatan bersama juga menjadi bagian dari kehidupan
-  masyarakat desa.
-</p>
-
-<h3>🎭 Budaya dan Tradisi</h3>
-
-<p>
-  Budaya dan tradisi merupakan bagian penting dari
-  identitas masyarakat. Nilai-nilai budaya dapat terus
-  dikenalkan kepada generasi muda melalui kegiatan
-  masyarakat dan pendidikan.
-</p>
-
-<h3>🌱 Lingkungan</h3>
-
-<p>
-  Lingkungan sekitar menjadi bagian penting dalam
-  kehidupan masyarakat. Menjaga kebersihan dan kelestarian
-  lingkungan merupakan tanggung jawab bersama.
-</p>
-
-  </section>  <!-- ================= GALERI ================= -->  <section id="galeri"><h2>Galeri Seburing</h2>
-
-<p class="intro">
-  Bagian ini dapat digunakan untuk menampilkan foto
-  Seburing Sungai Palai dan kegiatan masyarakat.
-</p>
-<div class="gallery">
-
-  <div class="gallery-item">
-    <img src="seburing.jpg" alt="Foto Seburing">
-    <h3>jalan.jpg</h3>
-  </div>
-
-  <div class="gallery-item">
-    <img src="sungai.jpg" alt="Foto Sungai Palai">
-    <h3>Foto Sungai Palai</h3>
-  </div>
-
-  <div class="gallery-item">
-    <img src="masyarakat.jpg" alt="Kegiatan Masyarakat">
-    <h3>Kegiatan Masyarakat</h3>
-  </div>
-
-  <div class="gallery-item">
-    <img src="budaya.jpg" alt="Budaya dan Tradisi">
-    <h3>Budaya dan Tradisi</h3>
-  </div>
-
-</div>
-
-</div>
-
-  </section>  <!-- ================= LOKASI ================= -->  <section id="lokasi"><h2>Lokasi Seburing</h2>
-
-<p class="intro">
-  Desa Seburing berada di Kecamatan Semparuk,
-  Kabupaten Sambas, Kalimantan Barat.
-</p>
-
-<div class="map">
-
-  <iframe
-    src="https://www.google.com/maps?q=1.136569,109.059339&hl=id&z=14&output=embed"
-    allowfullscreen=""
-    loading="lazy">
-  </iframe>
-
-</div>
-
-  </section>  <!-- ================= KONTAK ================= -->  <section id="kontak"><h2>Kontak</h2>
-
-<p class="intro">
-  Hubungi dan ikuti informasi Seburing melalui
-  media sosial.
-</p>
-
-<div class="contact-list">
-
-
-  <!-- WHATSAPP -->
-  <!-- GANTI 628xxxxxxxxxx DENGAN NOMOR WHATSAPP -->
-
-  <a
-    class="contact"
-    href="https://wa.me/+6283865131681"
-    target="_blank">
-
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-      alt="WhatsApp">
-
-    <div>
-      <strong>WhatsApp</strong>
-      <span>Hubungi melalui WhatsApp</span>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Desa Seburing</title>
+
+    <meta name="description"
+        content="Website informasi Desa Seburing, Kecamatan Semparuk, Kabupaten Sambas, Kalimantan Barat.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7faf8;
+            color: #18352a;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 7%;
+
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(12px);
+
+            box-shadow: 0 2px 15px rgba(0,0,0,.06);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #176b45;
+        }
+
+        .logo span {
+            color: #d89b35;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #234238;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #1c8755;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 150px 7% 80px;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(9,45,30,.9),
+                    rgba(9,45,30,.55),
+                    rgba(9,45,30,.2)
+                ),
+                url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=85");
+
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .location {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 30px;
+
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.3);
+
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 78px);
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #f3c65d;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 650px;
+            color: #edf7f1;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 10px;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: #f1c55a;
+            color: #173b2a;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: #ffd873;
+        }
+
+        .btn-secondary {
+            color: white;
+            border: 1px solid rgba(255,255,255,.5);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #176b45;
+        }
+
+        /* STATISTIK */
+        .stats {
+            width: 86%;
+            margin: -45px auto 0;
+
+            position: relative;
+            z-index: 5;
+
+            background: white;
+
+            border-radius: 20px;
+
+            box-shadow: 0 12px 40px rgba(0,0,0,.08);
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            overflow: hidden;
+        }
+
+        .stat {
+            padding: 30px;
+            text-align: center;
+            border-right: 1px solid #edf1ee;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat h2 {
+            color: #176b45;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            color: #718077;
+            font-size: 14px;
+        }
+
+        /* SECTION */
+        section {
+            padding: 100px 7%;
+        }
+
+        .section-label {
+            color: #b27b18;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 4vw, 50px);
+            line-height: 1.15;
+            margin-bottom: 25px;
+        }
+
+        .section-text {
+            color: #66756d;
+            max-width: 700px;
+        }
+
+        /* TENTANG */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 500px;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .about-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .about-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+
+            width: 21px;
+            height: 21px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #dff2e8;
+            color: #176b45;
+
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* DUSUN */
+        .dusun {
+            background: #edf7f1;
+        }
+
+        .dusun-card {
+            margin-top: 40px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+
+            box-shadow: 0 10px 35px rgba(0,0,0,.06);
+        }
+
+        .dusun-image {
+            min-height: 450px;
+        }
+
+        .dusun-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dusun-content {
+            padding: 55px;
+        }
+
+        .dusun-content h3 {
+            font-size: 35px;
+            margin-bottom: 18px;
+        }
+
+        .dusun-content p {
+            color: #6a7971;
+            margin-bottom: 25px;
+        }
+
+        .mini-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .mini-stat {
+            background: #f4f8f5;
+            padding: 18px;
+            border-radius: 12px;
+        }
+
+        .mini-stat strong {
+            display: block;
+            color: #176b45;
+            font-size: 22px;
+        }
+
+        .mini-stat span {
+            color: #7b8881;
+            font-size: 13px;
+        }
+
+        /* POTENSI */
+        .potential-grid {
+            margin-top: 45px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .potential-card {
+            background: white;
+            border: 1px solid #e8eee9;
+
+            padding: 30px;
+            border-radius: 18px;
+
+            transition: .3s;
+        }
+
+        .potential-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.08);
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #e2f3e9;
+            border-radius: 13px;
+
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .potential-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .potential-card p {
+            color: #748078;
+            font-size: 14px;
+        }
+
+        /* GALERI */
+        .gallery {
+            background: #f0f6f2;
+        }
+
+        .gallery-grid {
+            margin-top: 45px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 18px;
+        }
+
+        .gallery-caption h3 {
+            margin-bottom: 5px;
+        }
+
+        .gallery-caption p {
+            color: #7b8780;
+            font-size: 13px;
+        }
+
+        /* CTA */
+        .cta {
+            margin: 0 7% 80px;
+            padding: 70px 50px;
+
+            border-radius: 30px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #0c5436,
+                    #168052
+                );
+
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            max-width: 650px;
+            margin: auto auto 25px;
+            color: #d9eee3;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #092e20;
+            color: white;
+
+            padding: 60px 7% 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer li {
+            color: #b6cfc2;
+            font-size: 14px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,.12);
+            padding-top: 25px;
+            color: #91ad9f;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 900px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .about,
+            .dusun-card {
+                grid-template-columns: 1fr;
+            }
+
+            .potential-grid,
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            .hero {
+                padding: 130px 6% 80px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            section {
+                padding: 70px 6%;
+            }
+
+            .stats {
+                width: 90%;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat {
+                padding: 20px 10px;
+            }
+
+            .stat h2 {
+                font-size: 25px;
+            }
+
+            .potential-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dusun-content {
+                padding: 30px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                margin: 0 6% 60px;
+                padding: 50px 25px;
+            }
+
+            .cta h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+            Seburing<span>.</span>
+        </div>
+
+        <ul>
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#dusun">Dusun</a></li>
+            <li><a href="#potensi">Potensi</a></li>
+            <li><a href="#galeri">Galeri</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="beranda">
+
+        <div class="hero-content">
+
+            <div class="location">
+                📍 Kalimantan Barat · Indonesia
+            </div>
+
+            <h1>
+                Selamat Datang di
+                <span>Desa Seburing</span>
+            </h1>
+
+            <p>
+                Mengenal lebih dekat kehidupan masyarakat,
+                keindahan lingkungan, potensi, budaya, serta
+                berbagai kegiatan yang ada di Desa Seburing.
+            </p>
+
+            <div class="buttons">
+                <a href="#tentang" class="btn btn-primary">
+                    Jelajahi Desa
+                </a>
+
+                <a href="#potensi" class="btn btn-secondary">
+                    Lihat Potensi
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATISTIK -->
+    <div class="stats">
+
+        <div class="stat">
+            <h2>—</h2>
+            <p>Total Penduduk</p>
+        </div>
+
+        <div class="stat">
+            <h2>—</h2>
+            <p>Laki-Laki</p>
+        </div>
+
+        <div class="stat">
+            <h2>—</h2>
+            <p>Perempuan</p>
+        </div>
+
+        <div class="stat">
+            <h2>—</h2>
+            <p>Wilayah Dusun</p>
+        </div>
+
     </div>
 
-  </a>
+
+    <!-- TENTANG -->
+    <section id="tentang">
+
+        <div class="about">
+
+            <div class="about-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80"
+                    alt="Suasana Desa Seburing">
+
+            </div>
+
+            <div>
+
+                <div class="section-label">
+                    Tentang Desa
+                </div>
+
+                <h2 class="section-title">
+                    Desa yang asri dan penuh potensi
+                </h2>
+
+                <p class="section-text">
+                    Desa Seburing merupakan salah satu desa
+                    yang memiliki kehidupan masyarakat yang
+                    erat dengan lingkungan, kebersamaan,
+                    serta berbagai potensi yang dapat
+                    dikembangkan untuk kemajuan desa.
+                </p>
+
+                <ul class="about-list">
+
+                    <li>
+                        Lingkungan pedesaan yang asri dan nyaman.
+                    </li>
+
+                    <li>
+                        Masyarakat yang menjunjung kebersamaan.
+                    </li>
+
+                    <li>
+                        Memiliki berbagai potensi alam dan masyarakat.
+                    </li>
+
+                    <li>
+                        Semangat gotong royong dalam kehidupan sehari-hari.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
-  <!-- INSTAGRAM -->
-  <!-- GANTI USERNAME_INSTAGRAM -->
+    <!-- DUSUN -->
+    <section class="dusun" id="dusun">
 
-  <a
-    class="contact"
-    href="https://www.instagram.com/ersih2009/"
-    target="_blank">
+        <div class="section-label">
+            Wilayah Desa
+        </div>
 
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-      alt="Instagram">
+        <h2 class="section-title">
+            Mengenal Wilayah Seburing
+        </h2>
 
-    <div>
-      <strong>Instagram</strong>
-      <span>Ikuti Instagram kami</span>
-    </div>
-
-  </a>
+        <p class="section-text">
+            Kenali lebih dekat wilayah dan kehidupan
+            masyarakat yang berada di Desa Seburing.
+        </p>
 
 
-  <!-- FACEBOOK -->
-  <!-- GANTI USERNAME_FACEBOOK -->
+        <div class="dusun-card">
 
-  <a
-    class="contact"
-    href="https://www.facebook.com/ersih kirana/"
-    target="_blank">
+            <div class="dusun-image">
 
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_(square).png"
-      alt="Facebook">
+                <img
+                    src="https://images.unsplash.com/photo-1500076656116-558758c991c1?auto=format&fit=crop&w=1000&q=80"
+                    alt="Wilayah Desa Seburing">
 
-    <div>
-      <strong>Facebook</strong>
-      <span>Kunjungi Facebook kami</span>
-    </div>
+            </div>
 
-  </a>
 
-</div>
+            <div class="dusun-content">
 
-  </section>  <!-- ================= FOOTER ================= -->  <footer><p><strong>Seburing Sungai Palai</strong></p>
+                <h3>
+                    Desa Seburing
+                </h3>
 
-<p>
-  Mengenal Sejarah, Budaya, dan Kehidupan Masyarakat
-</p>
+                <p>
+                    Desa Seburing memiliki wilayah dan
+                    masyarakat dengan karakteristik yang
+                    beragam. Informasi mengenai dusun,
+                    jumlah penduduk, serta potensi wilayah
+                    dapat ditambahkan di bagian ini.
+                </p>
 
-<p style="margin-top:10px;">
-  © 2026 Seburing Sungai Palai
-</p>
+                <div class="mini-stats">
 
-  </footer></body>
-</html>
+                    <div class="mini-stat">
+                        <strong>—</strong>
+                        <span>Jumlah Penduduk</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>—</strong>
+                        <span>Kepala Keluarga</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>—</strong>
+                        <span>Dusun</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>—</strong>
+                        <span>Kecamatan</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- POTENSI -->
+    <section id="potensi">
+
+        <div class="section-label">
+            Potensi Desa
+        </div>
+
+        <h2 class="section-title">
+            Potensi Desa Seburing
+        </h2>
+
+        <p class="section-text">
+            Berbagai potensi alam, masyarakat, dan
+            lingkungan dapat menjadi kekuatan untuk
+            mendukung perkembangan Desa Seburing.
+        </p>
+
+
+        <div class="potential-grid">
+
+            <div class="potential-card">
+
+                <div class="icon">🌾</div>
+
+                <h3>
+                    Pertanian
+                </h3>
+
+                <p>
+                    Sektor pertanian dapat menjadi salah satu
+                    potensi penting dalam mendukung
+                    perekonomian masyarakat desa.
+                </p>
+
+            </div>
+
+
+            <div class="potential-card">
+
+                <div class="icon">🌿</div>
+
+                <h3>
+                    Lingkungan Hijau
+                </h3>
+
+                <p>
+                    Lingkungan yang asri dan berbagai
+                    tanaman menjadi bagian dari keindahan
+                    Desa Seburing.
+                </p>
+
+            </div>
+
+
+            <div class="potential-card">
+
+                <div class="icon">🤝</div>
+
+                <h3>
+                    Gotong Royong
+                </h3>
+
+                <p>
+                    Kebersamaan masyarakat menjadi kekuatan
+                    dalam menjaga lingkungan dan menjalankan
+                    kegiatan bersama.
+                </p>
+
+            </div>
+
+
+            <div class="potential-card">
+
+                <div class="icon">🏡</div>
+
+                <h3>
+                    Pekarangan
+                </h3>
+
+                <p>
+                    Pekarangan rumah dapat dikembangkan
+                    menjadi ruang hijau maupun tempat
+                    budidaya tanaman.
+                </p>
+
+            </div>
+
+
+            <div class="potential-card">
+
+                <div class="icon">🌱</div>
+
+                <h3>
+                    Tanaman
+                </h3>
+
+                <p>
+                    Berbagai tanaman yang tumbuh di
+                    lingkungan desa dapat menjadi bagian
+                    dari potensi alam.
+                </p>
+
+            </div>
+
+
+            <div class="potential-card">
+
+                <div class="icon">🌅</div>
+
+                <h3>
+                    Keindahan Alam
+                </h3>
+
+                <p>
+                    Pemandangan dan suasana pedesaan
+                    menjadi salah satu daya tarik
+                    Desa Seburing.
+  
