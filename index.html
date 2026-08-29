@@ -1,920 +1,729 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Desa Seburing</title>
-
-    <meta name="description"
-        content="Website informasi Desa Seburing, Kecamatan Semparuk, Kabupaten Sambas, Kalimantan Barat.">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f7faf8;
-            color: #18352a;
-            line-height: 1.6;
-        }
-
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 18px 7%;
-
-            background: rgba(255,255,255,.94);
-            backdrop-filter: blur(12px);
-
-            box-shadow: 0 2px 15px rgba(0,0,0,.06);
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            color: #176b45;
-        }
-
-        .logo span {
-            color: #d89b35;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #234238;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        nav a:hover {
-            color: #1c8755;
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            padding: 150px 7% 80px;
-
-            display: flex;
-            align-items: center;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(9,45,30,.9),
-                    rgba(9,45,30,.55),
-                    rgba(9,45,30,.2)
-                ),
-                url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=85");
-
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
-
-        .hero-content {
-            max-width: 700px;
-        }
-
-        .location {
-            display: inline-block;
-            padding: 8px 15px;
-            border-radius: 30px;
-
-            background: rgba(255,255,255,.15);
-            border: 1px solid rgba(255,255,255,.3);
-
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .hero h1 {
-            font-size: clamp(45px, 7vw, 78px);
-            line-height: 1.05;
-            margin-bottom: 25px;
-        }
-
-        .hero h1 span {
-            color: #f3c65d;
-        }
-
-        .hero p {
-            font-size: 18px;
-            max-width: 650px;
-            color: #edf7f1;
-            margin-bottom: 35px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 13px 22px;
-            border-radius: 10px;
-
-            text-decoration: none;
-            font-weight: bold;
-
-            transition: .3s;
-        }
-
-        .btn-primary {
-            background: #f1c55a;
-            color: #173b2a;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            background: #ffd873;
-        }
-
-        .btn-secondary {
-            color: white;
-            border: 1px solid rgba(255,255,255,.5);
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #176b45;
-        }
-
-        /* STATISTIK */
-        .stats {
-            width: 86%;
-            margin: -45px auto 0;
-
-            position: relative;
-            z-index: 5;
-
-            background: white;
-
-            border-radius: 20px;
-
-            box-shadow: 0 12px 40px rgba(0,0,0,.08);
-
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-
-            overflow: hidden;
-        }
-
-        .stat {
-            padding: 30px;
-            text-align: center;
-            border-right: 1px solid #edf1ee;
-        }
-
-        .stat:last-child {
-            border-right: none;
-        }
-
-        .stat h2 {
-            color: #176b45;
-            font-size: 32px;
-            margin-bottom: 5px;
-        }
-
-        .stat p {
-            color: #718077;
-            font-size: 14px;
-        }
-
-        /* SECTION */
-        section {
-            padding: 100px 7%;
-        }
-
-        .section-label {
-            color: #b27b18;
-            font-size: 13px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .section-title {
-            font-size: clamp(32px, 4vw, 50px);
-            line-height: 1.15;
-            margin-bottom: 25px;
-        }
-
-        .section-text {
-            color: #66756d;
-            max-width: 700px;
-        }
-
-        /* TENTANG */
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            height: 500px;
-            border-radius: 25px;
-            overflow: hidden;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .about-list {
-            list-style: none;
-            margin-top: 30px;
-        }
-
-        .about-list li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-        }
-
-        .about-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-
-            width: 21px;
-            height: 21px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background: #dff2e8;
-            color: #176b45;
-
-            border-radius: 50%;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        /* DUSUN */
-        .dusun {
-            background: #edf7f1;
-        }
-
-        .dusun-card {
-            margin-top: 40px;
-
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-
-            background: white;
-            border-radius: 25px;
-            overflow: hidden;
-
-            box-shadow: 0 10px 35px rgba(0,0,0,.06);
-        }
-
-        .dusun-image {
-            min-height: 450px;
-        }
-
-        .dusun-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .dusun-content {
-            padding: 55px;
-        }
-
-        .dusun-content h3 {
-            font-size: 35px;
-            margin-bottom: 18px;
-        }
-
-        .dusun-content p {
-            color: #6a7971;
-            margin-bottom: 25px;
-        }
-
-        .mini-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .mini-stat {
-            background: #f4f8f5;
-            padding: 18px;
-            border-radius: 12px;
-        }
-
-        .mini-stat strong {
-            display: block;
-            color: #176b45;
-            font-size: 22px;
-        }
-
-        .mini-stat span {
-            color: #7b8881;
-            font-size: 13px;
-        }
-
-        /* POTENSI */
-        .potential-grid {
-            margin-top: 45px;
-
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .potential-card {
-            background: white;
-            border: 1px solid #e8eee9;
-
-            padding: 30px;
-            border-radius: 18px;
-
-            transition: .3s;
-        }
-
-        .potential-card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 12px 30px rgba(0,0,0,.08);
-        }
-
-        .icon {
-            width: 50px;
-            height: 50px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background: #e2f3e9;
-            border-radius: 13px;
-
-            font-size: 25px;
-            margin-bottom: 20px;
-        }
-
-        .potential-card h3 {
-            margin-bottom: 10px;
-        }
-
-        .potential-card p {
-            color: #748078;
-            font-size: 14px;
-        }
-
-        /* GALERI */
-        .gallery {
-            background: #f0f6f2;
-        }
-
-        .gallery-grid {
-            margin-top: 45px;
-
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .gallery-item {
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-
-            box-shadow: 0 8px 25px rgba(0,0,0,.05);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .gallery-caption {
-            padding: 18px;
-        }
-
-        .gallery-caption h3 {
-            margin-bottom: 5px;
-        }
-
-        .gallery-caption p {
-            color: #7b8780;
-            font-size: 13px;
-        }
-
-        /* CTA */
-        .cta {
-            margin: 0 7% 80px;
-            padding: 70px 50px;
-
-            border-radius: 30px;
-
-            text-align: center;
-
-            background:
-                linear-gradient(
-                    120deg,
-                    #0c5436,
-                    #168052
-                );
-
-            color: white;
-        }
-
-        .cta h2 {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .cta p {
-            max-width: 650px;
-            margin: auto auto 25px;
-            color: #d9eee3;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #092e20;
-            color: white;
-
-            padding: 60px 7% 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 40px;
-        }
-
-        footer h3 {
-            margin-bottom: 15px;
-        }
-
-        footer p,
-        footer li {
-            color: #b6cfc2;
-            font-size: 14px;
-        }
-
-        footer ul {
-            list-style: none;
-        }
-
-        footer li {
-            margin-bottom: 8px;
-        }
-
-        .copyright {
-            border-top: 1px solid rgba(255,255,255,.12);
-            padding-top: 25px;
-            color: #91ad9f;
-            font-size: 13px;
-            text-align: center;
-        }
-
-        /* RESPONSIVE */
-        @media(max-width: 900px) {
-
-            nav ul {
-                display: none;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .stat:nth-child(2) {
-                border-right: none;
-            }
-
-            .about,
-            .dusun-card {
-                grid-template-columns: 1fr;
-            }
-
-            .potential-grid,
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media(max-width: 600px) {
-
-            .hero {
-                padding: 130px 6% 80px;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            section {
-                padding: 70px 6%;
-            }
-
-            .stats {
-                width: 90%;
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .stat {
-                padding: 20px 10px;
-            }
-
-            .stat h2 {
-                font-size: 25px;
-            }
-
-            .potential-grid,
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .dusun-content {
-                padding: 30px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta {
-                margin: 0 6% 60px;
-                padding: 50px 25px;
-            }
-
-            .cta h2 {
-                font-size: 30px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Desa Seburing | Kecamatan Semparuk</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:#333;
+    background:#f7faf8;
+    line-height:1.6;
+}
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(255,255,255,.96);
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#1d7a46;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:22px;
+}
+
+.logo h2{
+    color:#176337;
+    font-size:20px;
+}
+
+.logo span{
+    display:block;
+    font-size:12px;
+    color:#777;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#333;
+    font-weight:600;
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#1d7a46;
+}
+
+.hero{
+    min-height:100vh;
+    padding:150px 25px 80px;
+    display:flex;
+    align-items:center;
+    background:
+    linear-gradient(rgba(0,70,35,.68),rgba(0,70,35,.68)),
+    url("images/hero.jpg") center/cover;
+}
+
+.hero-content{
+    max-width:1200px;
+    margin:auto;
+    width:100%;
+    color:white;
+}
+
+.hero h1{
+    font-size:55px;
+    max-width:700px;
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.hero p{
+    max-width:650px;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    background:#f2c94c;
+    color:#333;
+    padding:13px 25px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+section{
+    padding:80px 25px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    color:#176337;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#777;
+}
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:45px;
+    align-items:center;
+}
+
+.about img{
+    width:100%;
+    height:370px;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+.about-text h2{
+    color:#176337;
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.about-text p{
+    margin-bottom:15px;
+}
+
+.stats{
+    background:#176337;
+    color:white;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    text-align:center;
+}
+
+.stat{
+    padding:25px 10px;
+}
+
+.stat .number{
+    font-size:38px;
+    font-weight:bold;
+    color:#f2c94c;
+}
+
+.stat p{
+    margin-top:5px;
+}
+
+.history{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.history-box{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 5px 25px rgba(0,0,0,.07);
+}
+
+.history-box h3{
+    color:#176337;
+    margin-bottom:15px;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.info-card{
+    background:white;
+    padding:28px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    text-align:center;
+}
+
+.info-card .icon{
+    width:55px;
+    height:55px;
+    background:#e7f5ec;
+    border-radius:50%;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.info-card h3{
+    color:#176337;
+    margin-bottom:8px;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.gallery img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    border-radius:15px;
+    transition:.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.03);
+}
+
+.contact{
+    background:#eaf5ee;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+}
+
+.contact-box{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+}
+
+.contact-box h3{
+    color:#176337;
+    margin-bottom:20px;
+}
+
+.contact-item{
+    margin-bottom:15px;
+}
+
+.contact-item strong{
+    color:#176337;
+}
+
+footer{
+    background:#124d2d;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+}
+
+footer p{
+    margin:5px;
+    font-size:14px;
+}
+
+@media(max-width:800px){
+
+    nav{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .about,
+    .history,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gallery{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:500px){
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav>
-        <div class="logo">
-            Seburing<span>.</span>
-        </div>
+<header>
+<div class="navbar">
 
-        <ul>
-            <li><a href="#beranda">Beranda</a></li>
-            <li><a href="#tentang">Tentang</a></li>
-            <li><a href="#dusun">Dusun</a></li>
-            <li><a href="#potensi">Potensi</a></li>
-            <li><a href="#galeri">Galeri</a></li>
-        </ul>
-    </nav>
-
-
-    <!-- HERO -->
-    <section class="hero" id="beranda">
-
-        <div class="hero-content">
-
-            <div class="location">
-                📍 Kalimantan Barat · Indonesia
-            </div>
-
-            <h1>
-                Selamat Datang di
-                <span>Desa Seburing</span>
-            </h1>
-
-            <p>
-                Mengenal lebih dekat kehidupan masyarakat,
-                keindahan lingkungan, potensi, budaya, serta
-                berbagai kegiatan yang ada di Desa Seburing.
-            </p>
-
-            <div class="buttons">
-                <a href="#tentang" class="btn btn-primary">
-                    Jelajahi Desa
-                </a>
-
-                <a href="#potensi" class="btn btn-secondary">
-                    Lihat Potensi
-                </a>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- STATISTIK -->
-    <div class="stats">
-
-        <div class="stat">
-            <h2>—</h2>
-            <p>Total Penduduk</p>
-        </div>
-
-        <div class="stat">
-            <h2>—</h2>
-            <p>Laki-Laki</p>
-        </div>
-
-        <div class="stat">
-            <h2>—</h2>
-            <p>Perempuan</p>
-        </div>
-
-        <div class="stat">
-            <h2>—</h2>
-            <p>Wilayah Dusun</p>
-        </div>
-
+<div class="logo">
+    <div class="logo-icon">🌿</div>
+    <div>
+        <h2>Desa Seburing</h2>
+        <span>Kecamatan Semparuk</span>
     </div>
+</div>
 
+<nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#profil">Profil</a>
+    <a href="#sejarah">Sejarah</a>
+    <a href="#potensi">Potensi</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#kontak">Kontak</a>
+</nav>
 
-    <!-- TENTANG -->
-    <section id="tentang">
+</div>
+</header>
 
-        <div class="about">
 
-            <div class="about-image">
+<!-- HERO -->
+<section class="hero" id="beranda">
 
-                <img
-                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80"
-                    alt="Suasana Desa Seburing">
+<div class="hero-content">
 
-            </div>
+<p>SELAMAT DATANG DI WEBSITE RESMI</p>
 
-            <div>
+<h1>Desa Seburing</h1>
 
-                <div class="section-label">
-                    Tentang Desa
-                </div>
+<p>
+Desa yang berada di Kecamatan Semparuk,
+Kabupaten Sambas, Provinsi Kalimantan Barat.
+Mari mengenal lebih dekat potensi, sejarah,
+masyarakat dan kehidupan Desa Seburing.
+</p>
 
-                <h2 class="section-title">
-                    Desa yang asri dan penuh potensi
-                </h2>
+<a href="#profil" class="btn">Jelajahi Desa</a>
 
-                <p class="section-text">
-                    Desa Seburing merupakan salah satu desa
-                    yang memiliki kehidupan masyarakat yang
-                    erat dengan lingkungan, kebersamaan,
-                    serta berbagai potensi yang dapat
-                    dikembangkan untuk kemajuan desa.
-                </p>
+</div>
 
-                <ul class="about-list">
+</section>
 
-                    <li>
-                        Lingkungan pedesaan yang asri dan nyaman.
-                    </li>
 
-                    <li>
-                        Masyarakat yang menjunjung kebersamaan.
-                    </li>
+<!-- PROFIL -->
+<section id="profil">
 
-                    <li>
-                        Memiliki berbagai potensi alam dan masyarakat.
-                    </li>
+<div class="container">
 
-                    <li>
-                        Semangat gotong royong dalam kehidupan sehari-hari.
-                    </li>
+<div class="section-title">
+<h2>Tentang Desa Seburing</h2>
+<p>Mengenal lebih dekat Desa Seburing</p>
+</div>
 
-                </ul>
+<div class="about">
 
-            </div>
+<img src="images/desa.jpg" alt="Desa Seburing">
 
-        </div>
+<div class="about-text">
 
-    </section>
+<h2>Desa Seburing</h2>
 
+<p>
+Desa Seburing merupakan salah satu desa yang berada
+di Kecamatan Semparuk, Kabupaten Sambas, Provinsi
+Kalimantan Barat.
+</p>
 
-    <!-- DUSUN -->
-    <section class="dusun" id="dusun">
+<p>
+Desa Seburing memiliki luas wilayah sekitar
+<strong>1.266 hektare</strong> dan menjadi bagian dari
+wilayah Kecamatan Semparuk.
+</p>
 
-        <div class="section-label">
-            Wilayah Desa
-        </div>
+<p>
+Website ini dibuat sebagai media informasi dan promosi
+untuk memperkenalkan Desa Seburing kepada masyarakat
+serta menampilkan potensi dan kegiatan desa.
+</p>
 
-        <h2 class="section-title">
-            Mengenal Wilayah Seburing
-        </h2>
+<a href="#sejarah" class="btn">Selengkapnya</a>
 
-        <p class="section-text">
-            Kenali lebih dekat wilayah dan kehidupan
-            masyarakat yang berada di Desa Seburing.
-        </p>
+</div>
 
+</div>
 
-        <div class="dusun-card">
+</div>
+</section>
 
-            <div class="dusun-image">
 
-                <img
-                    src="https://images.unsplash.com/photo-1500076656116-558758c991c1?auto=format&fit=crop&w=1000&q=80"
-                    alt="Wilayah Desa Seburing">
+<!-- STATISTIK -->
+<section class="stats">
 
-            </div>
+<div class="container">
 
+<div class="section-title">
+<h2 style="color:white">Statistik Desa</h2>
+<p style="color:#d8eadf">Data penduduk Desa Seburing</p>
+</div>
 
-            <div class="dusun-content">
+<div class="stats-grid">
 
-                <h3>
-                    Desa Seburing
-                </h3>
+<div class="stat">
+<div class="number">4.542</div>
+<p>Total Penduduk</p>
+</div>
 
-                <p>
-                    Desa Seburing memiliki wilayah dan
-                    masyarakat dengan karakteristik yang
-                    beragam. Informasi mengenai dusun,
-                    jumlah penduduk, serta potensi wilayah
-                    dapat ditambahkan di bagian ini.
-                </p>
+<div class="stat">
+<div class="number">2.346</div>
+<p>Laki-laki</p>
+</div>
 
-                <div class="mini-stats">
+<div class="stat">
+<div class="number">2.196</div>
+<p>Perempuan</p>
+</div>
 
-                    <div class="mini-stat">
-                        <strong>—</strong>
-                        <span>Jumlah Penduduk</span>
-                    </div>
+<div class="stat">
+<div class="number">1.266</div>
+<p>Luas Wilayah (Ha)</p>
+</div>
 
-                    <div class="mini-stat">
-                        <strong>—</strong>
-                        <span>Kepala Keluarga</span>
-                    </div>
+</div>
 
-                    <div class="mini-stat">
-                        <strong>—</strong>
-                        <span>Dusun</span>
-                    </div>
+</div>
+</section>
 
-                    <div class="mini-stat">
-                        <strong>—</strong>
-                        <span>Kecamatan</span>
-                    </div>
 
-                </div>
+<!-- SEJARAH -->
+<section id="sejarah">
 
-            </div>
+<div class="container">
 
-        </div>
+<div class="section-title">
+<h2>Sejarah Desa Seburing</h2>
+<p>Perjalanan terbentuknya Desa Seburing</p>
+</div>
+
+<div class="history">
+
+<div class="history-box">
+
+<h3>Awal Terbentuk</h3>
+
+<p>
+Desa Seburing atau sebelumnya dikenal sebagai
+Kampung Seburing terbentuk pada tahun
+<strong>1949</strong>.
+</p>
+
+<p>
+Pada masa tersebut Kampung Seburing merupakan
+pecahan dari Benua IX yang mencakup beberapa
+wilayah di sekitarnya.
+</p>
+
+</div>
 
-    </section>
+<div class="history-box">
 
+<h3>Menjadi Desa</h3>
 
-    <!-- POTENSI -->
-    <section id="potensi">
+<p>
+Pada tahun <strong>1998</strong>, Kampung Seburing
+kemudian berubah nama menjadi
+<strong>Desa Seburing</strong>.
+</p>
 
-        <div class="section-label">
-            Potensi Desa
-        </div>
+<p>
+Sejak saat itu pemerintahan desa dipimpin oleh
+Kepala Desa Seburing dan terus berkembang
+hingga sekarang.
+</p>
 
-        <h2 class="section-title">
-            Potensi Desa Seburing
-        </h2>
+</div>
 
-        <p class="section-text">
-            Berbagai potensi alam, masyarakat, dan
-            lingkungan dapat menjadi kekuatan untuk
-            mendukung perkembangan Desa Seburing.
-        </p>
+</div>
 
+</div>
+</section>
 
-        <div class="potential-grid">
 
-            <div class="potential-card">
+<!-- INFORMASI -->
+<section id="potensi">
 
-                <div class="icon">🌾</div>
+<div class="container">
 
-                <h3>
-                    Pertanian
-                </h3>
+<div class="section-title">
+<h2>Potensi & Kehidupan Desa</h2>
+<p>Berbagai hal yang menjadi bagian dari kehidupan masyarakat Seburing</p>
+</div>
 
-                <p>
-                    Sektor pertanian dapat menjadi salah satu
-                    potensi penting dalam mendukung
-                    perekonomian masyarakat desa.
-                </p>
+<div class="info-grid">
 
-            </div>
+<div class="info-card">
+<div class="icon">🌾</div>
+<h3>Pertanian</h3>
+<p>
+Pertanian menjadi salah satu bagian penting
+dalam kehidupan masyarakat Desa Seburing.
+</p>
+</div>
 
+<div class="info-card">
+<div class="icon">🤝</div>
+<h3>Gotong Royong</h3>
+<p>
+Semangat kebersamaan masyarakat terlihat
+dalam berbagai kegiatan pembangunan desa.
+</p>
+</div>
 
-            <div class="potential-card">
+<div class="info-card">
+<div class="icon">🏘️</div>
+<h3>Masyarakat</h3>
+<p>
+Kehidupan masyarakat desa yang aktif menjadi
+bagian penting dalam pembangunan Seburing.
+</p>
+</div>
 
-                <div class="icon">🌿</div>
+<div class="info-card">
+<div class="icon">🎓</div>
+<h3>Pendidikan</h3>
+<p>
+Pendidikan menjadi salah satu bagian penting
+dalam peningkatan kualitas sumber daya manusia.
+</p>
+</div>
 
-                <h3>
-                    Lingkungan Hijau
-                </h3>
+<div class="info-card">
+<div class="icon">🌱</div>
+<h3>Lingkungan</h3>
+<p>
+Lingkungan desa yang asri menjadi salah satu
+potensi yang dapat terus dikembangkan.
+</p>
+</div>
 
-                <p>
-                    Lingkungan yang asri dan berbagai
-                    tanaman menjadi bagian dari keindahan
-                    Desa Seburing.
-                </p>
+<div class="info-card">
+<div class="icon">🏛️</div>
+<h3>Pemerintahan</h3>
+<p>
+Pemerintah desa terus memberikan pelayanan
+kepada masyarakat Desa Seburing.
+</p>
+</div>
 
-            </div>
+</div>
 
+</div>
+</section>
 
-            <div class="potential-card">
 
-                <div class="icon">🤝</div>
+<!-- GALERI -->
+<section id="galeri">
 
-                <h3>
-                    Gotong Royong
-                </h3>
+<div class="container">
 
-                <p>
-                    Kebersamaan masyarakat menjadi kekuatan
-                    dalam menjaga lingkungan dan menjalankan
-                    kegiatan bersama.
-                </p>
+<div class="section-title">
+<h2>Galeri Desa Seburing</h2>
+<p>Dokumentasi kegiatan dan suasana Desa Seburing</p>
+</div>
 
-            </div>
+<div class="gallery">
 
+<img src="images/foto1.jpg" alt="Kegiatan Desa Seburing">
 
-            <div class="potential-card">
+<img src="images/foto2.jpg" alt="Kegiatan Desa Seburing">
 
-                <div class="icon">🏡</div>
+<img src="images/foto3.jpg" alt="Kegiatan Desa Seburing">
 
-                <h3>
-                    Pekarangan
-                </h3>
+<img src="images/foto4.jpg" alt="Kegiatan Desa Seburing">
 
-                <p>
-                    Pekarangan rumah dapat dikembangkan
-                    menjadi ruang hijau maupun tempat
-                    budidaya tanaman.
-                </p>
+<img src="images/foto5.jpg" alt="Kegiatan Desa Seburing">
 
-            </div>
+<img src="images/foto6.jpg" alt="Kegiatan Desa Seburing">
 
+</div>
 
-            <div class="potential-card">
+</div>
+</section>
 
-                <div class="icon">🌱</div>
 
-                <h3>
-                    Tanaman
-                </h3>
+<!-- KONTAK -->
+<section class="contact" id="kontak">
 
-                <p>
-                    Berbagai tanaman yang tumbuh di
-                    lingkungan desa dapat menjadi bagian
-                    dari potensi alam.
-                </p>
+<div class="container">
 
-            </div>
+<div class="section-title">
+<h2>Kontak Desa</h2>
+<p>Informasi Kantor Desa Seburing</p>
+</div>
 
+<div class="contact-grid">
 
-            <div class="potential-card">
+<div class="contact-box">
 
-                <div class="icon">🌅</div>
+<h3>🏛️ Kantor Desa Seburing</h3>
 
-                <h3>
-                    Keindahan Alam
-                </h3>
+<div class="contact-item">
+<strong>Alamat</strong><br>
+Jln. Pendidikan Seburing No.
+</div>
 
-                <p>
-                    Pemandangan dan suasana pedesaan
-                    menjadi salah satu daya tarik
-                    Desa Seburing.
+<div class="contact-item">
+<strong>Desa</strong><br>
+Seburing
+</div>
+
+<div class="contact-item">
+<strong>Kecamatan</strong><br>
+Semparuk
+</div>
+
+<div class="contact-item">
+<strong>Kabupaten</strong><br>
+Sambas
+</div>
+
+</div>
+
+
+<div class="contact-box">
+
+<h3>📞 Hubungi Kami</h3>
+
+<div class="contact-item">
+<strong>Kode Pos</strong><br>
+79453
+</div>
+
+<div class="contact-item">
+<strong>Email</strong><br>
+seburingkantordesa@gmail.com
+</div>
+
+<div class="contact-item">
+<strong>Jam Pelayanan</strong><br>
+Senin - Jumat<br>
+08.00 - 13.00 WIB
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<footer>
+
+<p><strong>Desa Seburing</strong></p>
+
+<p>
+Kecamatan Semparuk, Kabupaten Sambas,
+Kalimantan Barat
+</p>
+
+<p>© 2026 Pemerintah Desa Seburing</p>
+
+</footer>
+
+
+</body>
+</html>
   
